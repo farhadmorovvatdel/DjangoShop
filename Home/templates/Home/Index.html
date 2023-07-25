@@ -28,8 +28,6 @@
         </div>
     </div>
 </div>
-<!-- Header Start -->
-
 <!-- Banner Wrapper Start-->
 <section class="e-banner-wrapper e-banner-cloth">
     <div class="e-banner-inwrap">
@@ -875,7 +873,7 @@
 
 <!-- Footer start -->
 
-</div>
+
 <!-- main-wrapper End -->
 
 
@@ -994,6 +992,7 @@
 
 <!-- Login form start -->
 <!-- The Modal -->
+<a href="" data-toggle="modal" data-target="#login">ورود </a>
 <div class="e-autho-model modal fade" id="login">
     <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -1008,42 +1007,30 @@
                             <p class="autho-model-sttl">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است.</p>
                             <h2 class="autho-model-ttl">ورود </h2>
                         </div>
-
                         <div class="autho-model-filed">
-                            <form>
+                            <form method="post" id="loginform" >
+                                {% csrf_token %}
                                 <div class="row">
+
                                     <div class="col-md-12">
                                         <div class="e-form-field mb-20">
                                             <label>ایمیل </label>
-                                            <input class="e-field-inner" type="email">
+                                            <input class="e-field-inner" type="email" name="email" id="loginemail">
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                     <div class="col-md-12">
                                         <div class="e-form-field mb-20">
                                             <label>رمز عبور </label>
-                                            <input class="e-field-inner" type="Password">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="e-form-field mb-20">
-                                            <ul class="e-rememberforgot-list">
-                                                <li>
-                                                    <div class="e-checkbox-wrap">
-                                                        <input class="e-checkbox-input" type="checkbox" id="remember_me">
-                                                        <label for="remember_me" class="e-checkbox">مرا به خاطر بسپار </label>
-                                                    </div>
-                                                </li>
-                                                <li><a href="forgot_password.html" class="e-comn-link">فراموشی رمز عبور؟ </a></li>
-                                            </ul>
+                                            <input class="e-field-inner" type="Password" name="password" id="loginpassword">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="">
-                                            <a href="index.html" class="e-btn">ورود </a>
+                                            <button onclick="UserLogin()" class="e-btn" >ورود </button>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                              </form>
                         </div>
                     </div>
 
@@ -1058,6 +1045,7 @@
 
 <!-- Register form start -->
 <!-- The Modal -->
+<a href="" data-toggle="modal" data-target="#register">ثبت نام </a>
 <div class="e-autho-model modal fade" id="register">
     <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -1077,32 +1065,31 @@
                         </div>
 
                         <div class="autho-model-filed">
-                            <form>
+                            <form method="post" id="registerform">
+                                {% csrf_token %}
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="e-form-field mb-20">
-                                            <label>نام </label>
-                                            <input class="e-field-inner" type="text">
-                                        </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="e-form-field mb-20">
                                             <label>ایمیل </label>
-                                            <input class="e-field-inner" type="email">
+                                            <input class="e-field-inner" type="email" name="email" id="registeremail">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="e-form-field mb-20">
                                             <label>رمز عبور </label>
-                                            <input class="e-field-inner" type="Password">
+                                            <input class="e-field-inner" type="Password" name="password" id="registerpassword">
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="">
-                                            <a href="index.html" class="e-btn">ثبت نام </a>
+                                            <button onclick="UserRegister()" class="e-btn">ثبت نام </button>
                                         </div>
                                     </div>
+
                                 </div>
+
                             </form>
                         </div>
                     </div>
@@ -1134,5 +1121,5 @@
         <p>اوه مشکلی پیش آمد لطفا بعداً دوباره امتحان کنید ...</p>
     </div>
 </div>
-
+    </div>
 {% endblock %}

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 def Home(request):
+    print(request.user.is_authenticated)
     return  render(request,"Home/Index.html")
 
 def Header(request):
@@ -9,3 +10,8 @@ def Header(request):
 
 def Footer(request):
     return  render(request,"shared/Footer.html")
+
+
+
+
+
