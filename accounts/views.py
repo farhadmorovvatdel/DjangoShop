@@ -51,7 +51,7 @@ def UserLogout(request):
     return  redirect('Home:home')
 
 
-@require_http_methods(['GET','POST'])
+
 def UserProfileView(request):
     if request.user.is_authenticated:
         userprofile=UserProfile.objects.filter(email__iexact=request.user.email).first()
