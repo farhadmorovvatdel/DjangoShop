@@ -75,7 +75,7 @@ function UserLogin(){
             Swal.fire({
                 icon: 'error',
                 title: 'توجه',
-                text: 'برای ثبت نام لطفا رمز خود را وارد کنید ',
+                text: 'برای ورود لطفا رمز خود را وارد کنید ',
                 timer: 2000
 
             })

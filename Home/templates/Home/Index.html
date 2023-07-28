@@ -1024,13 +1024,19 @@
                                             <input class="e-field-inner" type="Password" name="password" id="loginpassword">
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="">
                                             <button onclick="UserLogin()" class="e-btn" >ورود </button>
                                         </div>
                                     </div>
+
+                                     <div class="col-md-6">
+                                        <div class="">
+                                           <a href="{% url 'accounts:password-reset' %}" class="e-btn" type="button">فراموشی رمز عبور</a>
+                                        </div>
+                                    </div>
                                 </div>
-                              </form>
+ </form>
                         </div>
                     </div>
 

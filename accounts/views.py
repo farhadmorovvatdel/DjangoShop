@@ -1,9 +1,12 @@
-from django.shortcuts import render,redirect
+from django.conf import settings
+from django.shortcuts import render, redirect, resolve_url
 from django.http import  JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib import  messages
-from django.views import View
+from django.contrib.auth.views import PasswordResetView,\
+    PasswordResetDoneView,\
+    PasswordResetConfirmView,PasswordResetCompleteView
+from django.urls import reverse_lazy
 
+from django.views import View
 from .models import UserProfile
 from django.views.decorators.http import require_POST
 from django.views.decorators.http import require_http_methods
@@ -74,6 +77,25 @@ def UserProfileView(request):
     return  render(request,'accounts/Profile.html',{'userprofile':userprofile})
 
 
+
+
+class UserPasswordResetView(PasswordResetView):
+    template_name = 'accounts/password_reset_form.html'
+    success_url = reverse_lazy('accounts:password_reset_done')
+    email_template_name = 'accounts/password_reset_email.html'
+
+
+class UserPaswwordResetDone(PasswordResetDoneView):
+    template_name = 'accounts/password_reset_don.html'
+
+
+class UserPasswordResetConfirm(PasswordResetConfirmView):
+    template_name ='accounts/password_reset_confirm.html'
+    success_url = reverse_lazy('accounts:password_reset_complete')
+
+
+class UserPasswordResetComplete(PasswordResetCompleteView):
+     template_name = 'accounts/password_reset_complete.html'
 
 
 
