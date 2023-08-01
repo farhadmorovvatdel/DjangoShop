@@ -146,7 +146,7 @@ EMAIL_HOST='smtp.gmail.com'
 EMAIL_HOST_USER="youremail@gmail.com"
 EMAIL_HOST_PASSWORD="your email password"
 
-
+LOGIN_URL="Home:home"
 
 
 

@@ -134,6 +134,7 @@ function UserProfileUpdate() {
 
     })
 }
-
-
-
+var x=$('#passwordnow').val()
+if (x === null){
+    alert('password must be write')
+}

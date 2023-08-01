@@ -1,11 +1,12 @@
 from django.conf import settings
-from django.shortcuts import render, redirect, resolve_url
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import render, redirect
 from django.http import  JsonResponse
 from django.contrib.auth.views import PasswordResetView,\
     PasswordResetDoneView,\
     PasswordResetConfirmView,PasswordResetCompleteView
 from django.urls import reverse_lazy
-
+from django.forms import ValidationError
 from django.views import View
 from .models import UserProfile
 from django.views.decorators.http import require_POST
@@ -98,7 +99,32 @@ class UserPasswordResetComplete(PasswordResetCompleteView):
      template_name = 'accounts/password_reset_complete.html'
 
 
+class UpdateUserPassword(LoginRequiredMixin,View):
+
+    def get(self,request):
 
 
+        return render(request,'accounts/ٍedit_user_password.html')
+    def post(self,request):
+        user = UserProfile.objects.filter(email__iexact=self.request.user.email).first()
+        raw_password = request.POST.get('password')
+        new_password = request.POST.get('new_password')
+        confirm_password = request.POST.get('confirm_password')
+        if user.check_password(raw_password):
+            if confirm_password == new_password:
+                user.set_password(new_password)
+                user.save()
+                logout(request)
+                return redirect('Home:home')
+            elif new_password != confirm_password:
+                context={
+                    'newpassword_error':'رمز های عبور با هم مغایرت دارند'
+                }
+                return render(request,'accounts/ٍedit_user_password.html',context)
 
-
+        else:
+            context = {
+                'password_error': 'رمز عبور فعلی صحیح نمی باشد'
+            }
+            return render(request, 'accounts/ٍedit_user_password.html',context)
+        return render(request, 'accounts/ٍedit_user_password.html')
