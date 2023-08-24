@@ -39,7 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
      "Home",
      'django_render_partial',
-    'accounts',
+     'accounts',
+     "ProductModule"
+
+
+
+
 
 
 ]

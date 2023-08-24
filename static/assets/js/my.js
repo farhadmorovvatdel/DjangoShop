@@ -28,28 +28,27 @@ function UserRegister() {
             type: 'POST',
             url: 'accounts/register',
             data: serializedData,
-            success:function (res){
-              if(res.status === 'duplicate'){
-                  Swal.fire({
-                icon: 'error',
-                title: 'توجه',
-                text: 'کابری با این مشخصات قبلا ثبت نام کرده است',
-                timer: 2000
+            success:function (res) {
+                if (res.status === 'ok') {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'ثبت نام شما با موفقیت انجام شد',
+                        showConfirmButton: false,
+                        timer: 1500
 
-            })
-              }
-              else{
-                 Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'ثبت نام شما با موفقیت انجام شد',
-      showConfirmButton: false,
-      timer: 1500
+                    })
+                    $(location).attr('href', 'accounts/userprofile');
+                } else
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'توجه',
+                        text: 'کابری با این مشخصات قبلا ثبت نام کرده است',
+                        timer: 2000
 
-            })
+                    })
 
-              }
-                // $(location).attr('href','accounts/userprofile');
+
             }
 
 
@@ -134,7 +133,4 @@ function UserProfileUpdate() {
 
     })
 }
-var x=$('#passwordnow').val()
-if (x === null){
-    alert('password must be write')
-}
+
