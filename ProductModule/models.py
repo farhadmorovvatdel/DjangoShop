@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+
+
 class Categories(models.Model):
     title=models.CharField(max_length=20)
     url_title=models.CharField(max_length=20,db_index=True)
@@ -12,6 +14,15 @@ class Categories(models.Model):
     class Meta:
         verbose_name='Category'
         verbose_name_plural='Categories'
+
+
+
+
+    
+  
+
+
+
 
 
 
@@ -33,8 +44,13 @@ class Products(models.Model):
     def __str__(self):
         return  f'{self.title}-{self.color}-{self.capacity}'
 
-    # def get_absolute_url(self):
-    #     return reverse('products:prcategorylist',self.title)
+    def get_absolute_url(self):
+        return reverse('products:productdetail',args={self.pk})
+
+
+
+
+
 
 
 

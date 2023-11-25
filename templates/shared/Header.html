@@ -35,8 +35,8 @@
                     <li><a href="wishlist.html">لیست علاقه مندیها </a></li>
                     <li>
                       {% else %}
-                        <a href="#" data-toggle="modal" data-target="#register">ثبت نام </a>
-                        <a href="javascript:void(0);" data-toggle="modal" data-target="#login">ورود </a>
+                        <a  data-toggle="modal" data-target="#register">ثبت نام </a>
+                        <a  data-toggle="modal" data-target="#login">ورود </a>
                         {% endif %}
                     </li>
 
@@ -64,21 +64,26 @@
                          </p>
                     </li>
                     {% for item in categories %}
+                   
                     <li>
-                     {% if item.is_parent is True %}
+                    {% if item.is_parent is True %}
+                    
                         <a href="javascript:void(0);">{{ item.title }} </a>
                         {% endif %}
                             <div class="drop-menu mega-menu">
                                 <ul class="sub-menu">
                                     <li >
+                                        {% for i in categories %}
+                                        {% if i.is_parent is False  and item.id == i.parent_id %}
 {#                                        <a href="javascript:void(0);">پوشیدنی های برتر</a>#}
                                             <ul class="super-sub-menu">
-                                                {% for i in item.subcategory.all %}
-                                                <li ><a href="{% url 'products:prcategorylist' i.url_title %}">{{ i.title }} </a></li>
-                                                {% endfor %}
-                                            </ul>
-                                    </li>
 
+                                                <li ><a href="#">{{ i.title }} </a></li>
+                                
+                                            </ul>
+                                            {% endif %}
+                                            {% endfor %}
+                                    </li>
                                 </ul>
                                 <div class="mega-menu-info d-lg-flex">
                                     <div class="col-lg-4">

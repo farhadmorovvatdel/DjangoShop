@@ -21,7 +21,12 @@
                     <div class="e-profile-img">
                         <div class="e-userpro-img">
                             <img src="{% static 'assets/images/user_profile.jpg' %}" alt="image">
-                            <input type="file" id="user_profile">
+{#                            <form method="post" enctype="multipart/form-data" id="profilepicture"#}
+{#                            action="{% url 'accounts:userprofilepicture' %}">#}
+                                {% csrf_token %}
+                            <input type="file" id="user_profile"
+                                   onclick="UserProfilePicture()">
+
                             <label for="user_profile">
                                 <span>
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 485.219 485.22" style="enable-background:new 0 0 485.219 485.22;" xml:space="preserve">
@@ -42,7 +47,7 @@
                         </div>
                     </div>
                     <div class="e-profile-box">
-                    <form method="post"  id="profileform"  action="{% url 'accounts:userprofile' %}">
+                    <form method="post"  id="profileform"   action="{% url 'accounts:userprofile' %}">
                     {% csrf_token %}
                         <div class="row">
                             <div class="col-md-6 ">

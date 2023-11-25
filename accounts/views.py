@@ -54,7 +54,14 @@ def UserLogout(request):
     logout(request)
     return  redirect('Home:home')
 
-
+@require_POST
+def UpdateProfilePictureView(request):
+    if request.user.is_authenticated:
+      print(request.FILES)
+      # picture=request.FILES['prpicture']
+      # user=UserProfile.objects.filter(email__iexact=request.user.email).update(ProfileImage=picture)
+      return redirect('accounts:userprofile')
+    return  render(request,'accounts/Profile.html')
 
 def UserProfileView(request):
     if request.user.is_authenticated:
@@ -68,7 +75,7 @@ def UserProfileView(request):
         phonenumber=request.POST.get('phonenumber')
         address=request.POST.get('address')
         userprofile = UserProfile.objects.filter(email__iexact=request.user.email).update(
-         first_name=firstname,last_name=lastname,email=email,PhoneNumber=phonenumber,Address=address
+         first_name=firstname,last_name=lastname,PhoneNumber=phonenumber,Address=address,
         )
 
         return redirect('accounts:userprofile')
@@ -102,9 +109,8 @@ class UserPasswordResetComplete(PasswordResetCompleteView):
 class UpdateUserPassword(LoginRequiredMixin,View):
 
     def get(self,request):
-
-
         return render(request,'accounts/ٍedit_user_password.html')
+
     def post(self,request):
         user = UserProfile.objects.filter(email__iexact=self.request.user.email).first()
         raw_password = request.POST.get('password')

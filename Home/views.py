@@ -5,11 +5,16 @@ def Home(request):
 
     return  render(request,"Home/Index.html")
 
-def Header(request):
+def Header(request,title=None):
     categories=Categories.objects.prefetch_related('subcategory').only('title')
-    print(categories)
+    # title=request.GET['title']
+    # x=categories.filter(url_title=title)
+    # print(x)
+
     context={
         'categories':categories,
+
+         
     }
     return render(request,"shared/Header.html",context)
 

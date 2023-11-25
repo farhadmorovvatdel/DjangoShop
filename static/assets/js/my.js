@@ -1,4 +1,17 @@
-
+$(document).ready(function() {
+    $('#categoryid').change(function(e) {
+        e.preventDefault();
+        var selectoption = $('#categoryid').val();
+        alert(selectoption)
+        $.ajax({
+            type:'GET',
+            data: {
+                "option_name":selectoption
+            },
+            url:'products/productcategory'
+        })
+    });
+});
 function UserRegister() {
     $('#registerform').on('submit', function (e) {
         e.preventDefault()
@@ -133,4 +146,6 @@ function UserProfileUpdate() {
 
     })
 }
-
+function UserProfilePicture(){
+    data=$('#user_profile').val()
+}
