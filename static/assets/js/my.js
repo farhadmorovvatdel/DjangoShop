@@ -182,17 +182,14 @@ $(document).ready(function(){
     // $('#mycategory').change(function (){
 
         $('#mycategory').on('change',function (){
-           // var selectbrand=$(this).val()
+           var selectbrand=$(this).val()
+           var urls=$(this).attr('data-url')
 
-        var urls=$(this).attr('data-url')
         // var selected=$('#mycategory').find('option:selected').val()
 
             $.ajax({
                 type: "GET",
                 url: urls,
-
-
-
 
     })
     })

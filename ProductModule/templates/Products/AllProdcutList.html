@@ -1,7 +1,6 @@
 {% extends 'Base.html' %}
-{% load static %}
 {% block content %}
-    <div class="e-breadcumb-wrap text-center">
+     <div class="e-breadcumb-wrap text-center">
     <h2 class="e-breadcumb-title">دسته محصولات </h2>
     <ul class="e-breadcumb-kist">
         <li>
@@ -689,18 +688,7 @@
 {#                        </li>#}
                     </ul>
                 </div>
-{#                <div class="e-pagination-wrap mt-10">#}
-{#                    <ul class="e-pagination justify-content-center e-line">#}
-{#                        <li class="e-page-item disabled"><a class="e-btn light" href="javascript:void(0);">قبلی </a></li>#}
-{#                        <li class="e-page-item"><a class="active e-btn light" href="javascript:void(0);">01</a></li>#}
-{#                        <li class="e-page-item"><a class="e-btn light" href="javascript:void(0);">02</a></li>#}
-{#                        <li class="e-page-item"><a class="e-btn light pointer-events-none" href="javascript:void(0);">...</a></li>#}
-{#                        <li class="e-page-item"><a class="e-btn light" href="javascript:void(0);">08</a></li>#}
-{#                        <li class="e-page-item"><a class="e-btn light" href="javascript:void(0);">09</a></li>#}
-{#                        <li class="e-page-item"><a class="e-btn light" href="javascript:void(0);">بعدی </a></li>#}
-{#                      </ul>#}
-{#                </div>#}
-            {% include 'Products/Pagination.html' %}
+                {% include 'Products/Pagination.html' %}
             </div>
         </div>
     </div>
