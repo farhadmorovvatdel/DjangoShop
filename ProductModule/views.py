@@ -1,21 +1,35 @@
 from typing import Any
 from django.db.models.query import QuerySet
-from django.shortcuts import render,get_object_or_404
+from django.shortcuts import render,get_object_or_404,HttpResponse
 from django.views.generic import  ListView,DetailView
 import  json
 from ProductModule.models import Products,Categories
 
 
+
+
 class ProductListView(ListView):
      template_name = 'Products/ProductList.html'
-     
+     model = Products
      def get_queryset(self,*args,**kwars):
+
           url_title=self.kwargs['url_title']
-          query= super().get_queryset()
-          query.filter(url__title=url_title)
-          return query
+          query= super().get_queryset().filter(categories__url_title=url_title)
+          return  query
+     def get_context_data(self,*args,**kwargs):
+         context=super().get_context_data(*args,**kwargs)
+         context['categories']=Categories.objects.filter(is_parent=True)
+
+         return context
 
 
+def ProductCategory(request):
+    url_title=request.GET.get('url_title')
+    products=Products.objects.filter(categories__url_title=url_title)
+    context={
+        'products':products
+    }
+    return render(request)
 
 
 
@@ -48,10 +62,21 @@ class ProductListView(ListView):
 
 class ProdcutDetailView(DetailView):
     template_name = 'Products/Prodcut_Detail.html'
-    model = Products
+    model =Products
 
 
-
+# class ProductListFilter(ListView):
+#     template_name = 'Products/ProductListPartial.html'
+#     model = Products
+#     def get_queryset(self,*args,**kwargs):
+#         q=self.kwargs['catname']
+#         print(q)
+#         query=super(ProductListFilter, self).get_queryset().filter(
+#             categories__parent_id=q
+#         )
+#         print(query)
+#         return query
+#
 
 
 

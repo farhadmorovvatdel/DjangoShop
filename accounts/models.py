@@ -6,7 +6,7 @@ from .UserManager import CustomUserManager
 class UserProfile(AbstractUser):
     username = None
     PhoneNumber=models.CharField(max_length=11,null=True,blank=True)
-    ProfileImage=models.ImageField(upload_to="ProfilImage/image",null=True,blank=True)
+    UserAvatar=models.ImageField(upload_to='Users/Avatar',null=True,blank=True)
     email=models.EmailField(max_length=30,unique=True)
     Address=models.TextField(null=True,blank=True)
     USERNAME_FIELD = "email"
@@ -27,3 +27,6 @@ class UserProfile(AbstractUser):
 
     def __str__(self):
         return  self.email
+
+    def get_image(self):
+        return  self.UserAvatar

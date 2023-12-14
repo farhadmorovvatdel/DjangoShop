@@ -18,14 +18,6 @@ class Categories(models.Model):
 
 
 
-    
-  
-
-
-
-
-
-
 class Products(models.Model):
     title=models.CharField(max_length=50,db_index=True)
     image=models.ImageField(upload_to='products/images',null=True,blank=True)

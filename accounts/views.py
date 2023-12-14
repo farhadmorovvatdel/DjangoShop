@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from django.http import  JsonResponse
 from django.contrib.auth.views import PasswordResetView,\
     PasswordResetDoneView,\
@@ -10,9 +10,11 @@ from django.forms import ValidationError
 from django.views import View
 from .models import UserProfile
 from django.views.decorators.http import require_POST
-from django.views.decorators.http import require_http_methods
+
 from django.contrib.auth import  logout,login
 from .models import UserProfile
+from django.views.generic import UpdateView, CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 @require_POST
 def UserRegister(request):
@@ -54,13 +56,21 @@ def UserLogout(request):
     logout(request)
     return  redirect('Home:home')
 
+
+
+
 @require_POST
 def UpdateProfilePictureView(request):
     if request.user.is_authenticated:
-      print(request.FILES)
-      # picture=request.FILES['prpicture']
-      # user=UserProfile.objects.filter(email__iexact=request.user.email).update(ProfileImage=picture)
+
+      picture=request.FILES.get('user_profile')
+      print(picture)
+      user=UserProfile.objects.filter(email=request.user.email)
+      user.update(UserAvatar=picture)
+
+
       return redirect('accounts:userprofile')
+
     return  render(request,'accounts/Profile.html')
 
 def UserProfileView(request):

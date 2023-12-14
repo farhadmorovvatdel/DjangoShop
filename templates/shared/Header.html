@@ -78,7 +78,7 @@
 {#                                        <a href="javascript:void(0);">پوشیدنی های برتر</a>#}
                                             <ul class="super-sub-menu">
 
-                                                <li ><a href="#">{{ i.title }} </a></li>
+                                                <li ><a href="{% url 'products:productlist' i.url_title  %}">{{ i.title }} </a></li>
                                 
                                             </ul>
                                             {% endif %}

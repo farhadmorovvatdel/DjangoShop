@@ -20,12 +20,14 @@
                 <div class="e-profile-inner">
                     <div class="e-profile-img">
                         <div class="e-userpro-img">
-                            <img src="{% static 'assets/images/user_profile.jpg' %}" alt="image">
+                            <img src="{{ userprofile.get_image.url }}" alt="image">
 {#                            <form method="post" enctype="multipart/form-data" id="profilepicture"#}
 {#                            action="{% url 'accounts:userprofilepicture' %}">#}
-                                {% csrf_token %}
-                            <input type="file" id="user_profile"
-                                   onclick="UserProfilePicture()">
+{#                                {% csrf_token %}#}
+{#                            <input type="file" id="user_profile" name="user_profile">#}
+{#                                <input type="file" name="user_profile">#}
+{#                                <button type="submit">ویرایش پروفایل</button>#}
+{#                            </form>#}
 
                             <label for="user_profile">
                                 <span>
@@ -46,6 +48,12 @@
                             </label>
                         </div>
                     </div>
+                <form action="{% url 'accounts:userprofilepicture' %}" enctype="multipart/form-data" method="post">
+                                <input type="file" name="user_profile">
+                                {% csrf_token %}
+                                 {{ form.as_p }}
+                                <input type="submit">
+                            </form>
                     <div class="e-profile-box">
                     <form method="post"  id="profileform"   action="{% url 'accounts:userprofile' %}">
                     {% csrf_token %}
@@ -53,13 +61,13 @@
                             <div class="col-md-6 ">
                                 <div class="e-form-field mb-26">
                                     <label>نام کوچک </label>
-                                    <input class="e-field-inner require" name="firstname" type="text" value="{{ userprofile.first_name }}" >
+                                    <input class="e-field-inner require" id="firstname" name="firstname" type="text" value="{{ userprofile.first_name }}" >
                                 </div>
                             </div>
                             <div class="col-md-6 ">
                                 <div class="e-form-field mb-26">
                                     <label>نام خانوادگی  </label>
-                                    <input class="e-field-inner require" name="lastname" type="text" value="{{ userprofile.last_name }}" >
+                                    <input class="e-field-inner require" name="lastname" id="lastname" type="text" value="{{ userprofile.last_name }}" >
                                 </div>
                             </div>
                             <div class="col-md-6 ">
@@ -74,7 +82,7 @@
                                     {% if userprofile.PhoneNumber is None %}
                                     <input class="e-field-inner require" name="phonenumber" type="text"  value=" ">
                                     {% else %}
-                                     <input class="e-field-inner require" name="phonenumber" type="text"  value="{{ userprofile.PhoneNumber }}">
+                                     <input class="e-field-inner require" name="phonenumber" id="phonenumber" type="text"  value="{{ userprofile.PhoneNumber }}">
                                     {% endif %}
                                 </div>
                             </div>

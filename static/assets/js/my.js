@@ -123,9 +123,40 @@ function UserLogin(){
 function UserProfileUpdate() {
     $('#profileform').on('submit', function (e) {
         e.preventDefault()
-        var serializedData = $(this).serialize();
-        var url= $('#profileform').attr('action')
-        $.ajax({
+        if ($('#firstname').val()===''){
+             Swal.fire({
+                icon: 'error',
+                title: 'توجه',
+                text: 'نام کاربری نمی تواند خالی باشد',
+                timer: 2000
+
+
+            })
+        }
+        else if($('#lastname').val()=== ''){
+             Swal.fire({
+                icon: 'error',
+                title: 'توجه',
+                text: 'نام خانوادگی نمی تواند خالی باشد',
+                timer: 2000
+
+
+            })
+        }
+        else if($('#phonenumber').val()=== ''){
+            Swal.fire({
+                icon: 'error',
+                title: 'توجه',
+                text: 'شماره تلفن نمی تواند خالی باشد',
+                timer: 2000
+
+
+            })
+        }
+        else
+         var serializedData = $(this).serialize();
+         var url= $('#profileform').attr('action')
+         $.ajax({
             type:'POST',
             url:url,
             data:serializedData,
@@ -146,6 +177,38 @@ function UserProfileUpdate() {
 
     })
 }
-function UserProfilePicture(){
-    data=$('#user_profile').val()
-}
+
+$(document).ready(function(){
+    // $('#mycategory').change(function (){
+
+        $('#mycategory').on('change',function (){
+           // var selectbrand=$(this).val()
+
+        var urls=$(this).attr('data-url')
+        // var selected=$('#mycategory').find('option:selected').val()
+
+            $.ajax({
+                type: "GET",
+                url: urls,
+
+
+
+
+    })
+    })
+
+    }
+)
+
+// $(document).ready(function (){
+//     $('#formcategory').change(function (){
+//         var x=$('select[name="category"] option:selected').val()
+//         alert(x)
+//         // var url=$('#formcategory').attr('action')
+//         $.ajax({
+//             type:'GET',
+//             url:'accounts/login'
+//         })
+//     })
+//
+// })

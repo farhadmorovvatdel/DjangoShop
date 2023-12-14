@@ -33,7 +33,9 @@
                     <div class="pd-img-wrap">
                         <div class="pd-img text-center">
 {#                            <img src="{{ object.get_absolute_url }}" alt="product-img">#}
+                            {% if object.image %}
                             <img src="{{ object.image.url }}" alt="product-img">
+                            {% endif %}
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ urlpatterns=[
     # path("show_user_profile",show_user_profile,name="show_user_profile"),
     path("logout",UserLogout,name='logout'),
     path("userprofile", UserProfileView, name='userprofile'),
-    path("updateprofile", UpdateProfilePictureView, name='userprofilepicture'),
+    path("updateprofile",UpdateProfilePictureView, name='userprofilepicture'),
     path("password-reset/",UserPasswordResetView.as_view(), name='password-reset'),
     path('password-reset/done/',UserPaswwordResetDone.as_view(),
          name='password_reset_done'),

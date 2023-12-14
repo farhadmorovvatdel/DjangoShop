@@ -41,12 +41,6 @@ INSTALLED_APPS = [
      'django_render_partial',
      'accounts',
      "ProductModule"
-
-
-
-
-
-
 ]
 
 AUTH_USER_MODEL='accounts.UserProfile'
@@ -133,7 +127,7 @@ STATIC_URL = 'static/'
 MEDIA_URL='media/'
 
 MEDIA_ROOT=os.path.join(BASE_DIR,"media")
-# possible options: 'sweetalert', 'sweetalert2' - default is 'sweetalert2'
+
 
 STATICFILES_DIRS=[
     BASE_DIR /'static'
