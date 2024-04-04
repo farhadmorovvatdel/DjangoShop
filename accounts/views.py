@@ -13,7 +13,7 @@ from django.views.decorators.http import require_POST
 
 from django.contrib.auth import  logout,login
 from .models import UserProfile
-from django.views.generic import UpdateView, CreateView
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 @require_POST
@@ -38,6 +38,7 @@ def UserLogin(request):
       email = request.POST["email"]
       raw_password = request.POST["password"]
       user=UserProfile.objects.filter(email=email).first()
+      print(user)
       if user is not  None:
           is_correctpassword=user.check_password(raw_password)
           if is_correctpassword:

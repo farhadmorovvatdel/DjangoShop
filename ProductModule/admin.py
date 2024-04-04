@@ -9,3 +9,4 @@ admin.site.register(Colors)
 admin.site.register(Capacity)
 
 
+

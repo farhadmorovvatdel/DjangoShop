@@ -1,17 +1,19 @@
+{% if is_paginated %}
 <div class="e-pagination-wrap mt-10">
-                    <ul class="e-pagination justify-content-center e-line">
-                    {% if page_obj.has_previous %}
-                        <li class="e-page-item disabled"><a class="e-btn light" href="?page={{ page_obj.previous_page_number }}">قبلی </a></li>
-                    {% endif %}
-                        {% for i in paginator.page_range %}
-                            {% if page_obj.number == i %}
-                        <li class="e-page-item"><a class="active e-btn light" href="?page={{ i }}">{{ i }}</a></li>
-                            {% else %}
-                       <li class="e-page-item disabled"><a class="e-btn light" href="?page={{ i }}">{{ i }}</a></li>
-                            {% endif %}
-                        {% endfor %}
-                        {% if page_obj.has_next %}
-                        <li class="e-page-item"><a class="e-btn light" href="?page={{ page_obj.next_page_number }}">بعدی </a></li>
-                    {% endif %}
-                      </ul>
-                </div>
+    <ul class="e-pagination justify-content-center e-line">
+    {% if page_obj.has_previous %}
+        <li class="e-page-item disabled"><a class="e-btn light" href="?page={{ page_obj.previous_page_number }}">قبلی </a></li>
+    {% endif %}
+        {% for i in paginator.page_range %}
+            {% if page_obj.number == i %}
+        <li class="e-page-item"><a class="active e-btn light" href="?page={{ i }}">{{ i }}</a></li>
+            {% else %}
+       <li class="e-page-item disabled"><a class="e-btn light" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li class="e-page-item"><a class="e-btn light" href="?page={{ page_obj.next_page_number }}">بعدی </a></li>
+    {% endif %}
+      </ul>
+</div>
+{% endif %}

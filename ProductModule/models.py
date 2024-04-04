@@ -29,6 +29,7 @@ class Products(models.Model):
     categories=models.ForeignKey('Categories',on_delete=models.CASCADE)
     price=models.CharField(max_length=20)
     count=models.PositiveSmallIntegerField(default=0)
+
     class Meta:
       verbose_name = 'Product'
       verbose_name_plural = 'Products'
@@ -77,3 +78,5 @@ class ProductGalleries(models.Model):
 
     def __str__(self):
         return  self.title
+
+
